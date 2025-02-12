@@ -19,12 +19,21 @@ public class TowersOfHanoi {
         //  places disks in towerA
         for (int i = 0; diskAmount > i; i++) {
             towerA.add(i+1);
+            towerB.add(0);
+            towerC.add(0);
         } //  end of for loop
 
         //  sorts towerA disks in correct order for start of game
-        Collections.sort(towerA, Collections.reverseOrder());
+        Collections.sort(towerA);
+        Collections.sort(towerB);
+        Collections.sort(towerC);
+        System.out.println();
 
-        //  test line for order of disks in towerA
-        System.out.print(towerA);
+        //  user menu for game
+        for (int i = 0; diskAmount > i; i++) {
+            System.out.print(towerA.get(i));
+            System.out.print(towerB.get(i));
+            System.out.println(towerC.get(i));
+        } //  end of for loop
     } //  end of main method
 } //  end of TowersOfHanoi class
