@@ -1,3 +1,12 @@
+/*
+ * Author: Christopher Waschke
+ * Assignment: Lab 6 - Recursion
+ * Description: Create a Pascal's Triangle based upon inputted size. Recurses through every method, not using a single loop.
+ * For Extra Credit:
+ *  There are 5 methods in this file that are recursive, not a single for loop used at all, everywhere it could be recursive, is recursive.
+ *  I catch unexpected Scanner input, if the file is ran directly in main. See lines (118-123)
+ */
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
