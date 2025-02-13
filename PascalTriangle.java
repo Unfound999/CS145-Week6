@@ -1,29 +1,26 @@
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PascalTriangle {
 
     /**
-     *  Recursively processes the cells for a row in our triangle.
+     * Recursively processes the cells for a row in our triangle.
      * @param priorRow The row we're using to get the addition for our new cells
      * @param currRow The array we're adding our new cells too.
      * @param index The index of which cell we are currently working on.
-     * @return The next index that should be worked on.
      */
-    public static int processCells(int[] priorRow, int[] currRow, int index) {
+    private static void processCells(int[] priorRow, int[] currRow, int index) {
         // Only recurse if our index is greater than zero.
         if (index > 0) {
-            index = processCells(priorRow, currRow, index - 1); // Recurse at the next lower index.
+            processCells(priorRow, currRow, index - 1); // Recurse at the next lower index.
         }
 
         // If our index is zero, or we're at the end of the array, assign the value of 1 in line with Pascal's Triangle.
         if (index == 0 || index == currRow.length - 1) {
             currRow[index] = 1;
-            return index + 1;
+            return;
         }
         currRow[index] = priorRow[index] + priorRow[index - 1];
-        return index + 1;
     }
 
     /**
@@ -33,21 +30,28 @@ public class PascalTriangle {
      * @param rowCount How many rows are in this triangle.
      * @return Returns itself, to recurse in the next loop as the prior row.
      */
-    public static int[] processRow(int[][] triangle, int[] priorRow, int rowCount) {
+    private static int[] processRow(int[][] triangle, int[] priorRow, int rowCount) {
+
+        // Base case, if we're at the first row, return an array with the value of 1.
         if (rowCount == 0) {
             int[] newRow = new int[] { 1 };
             triangle[rowCount] = newRow;
             return newRow;
         }
-        priorRow = processRow(triangle, priorRow, rowCount - 1);
-        int[] row = new int[priorRow.length + 1];
-        processCells(priorRow, row, row.length - 1);
-        // forSketch(priorRow, row);
-        triangle[rowCount] = Arrays.copyOf(row, row.length);
-        return row;
+
+        priorRow = processRow(triangle, priorRow, rowCount - 1); //Recurse through each row, with the last processed row now being our priorRow.
+        int[] row = new int[priorRow.length + 1]; // Grow our new row by one.
+        processCells(priorRow, row, row.length - 1); // Process Cells for our current row.
+        triangle[rowCount] = row; // Assign the triangle our row at it's expected index.
+        return row; // Return our row for processing on the next iteration.
     }
 
-    public static void printCell(int[] row, int index) {
+    /**
+     * Prints out to the Console each cell in a row.
+     * @param row the row we're printing the cells of.
+     * @param index Index of the current cell in the row.
+     */
+    private static void printCell(int[] row, int index) {
         if (index != 0) {
             printCell(row, index - 1);
         }
@@ -58,28 +62,46 @@ public class PascalTriangle {
         }
     }
 
-    public static void printTab(int tabCount) {
+    /**
+     * Prints out tabs recursively to fit the requested tab count.
+     * @param tabCount How many tabs we're printing.
+     */
+    private static void printTab(int tabCount) {
         if (tabCount != 0) {
             printTab(tabCount - 1);
         }
         System.out.print("  ");
     }
 
-    public static void printRow(int[][] triangle, int rowCount, int tabCount) {
-        if (rowCount != 0) {
-            printRow(triangle, rowCount - 1, tabCount + 1);
+    /***
+     * Prints the rows found within a 2d array as a triangle, using recursion.
+     * @param triangle The 2d array to print as a triangle.
+     * @param rowIndex The index of the row within the triangle. This should be our upper array boundary when calling. (Recursively, this will shrink.)
+     * @param tabCount How many tabs we are printing with the row. (Should be 0 at initialization.)
+     */
+    private static void printRow(int[][] triangle, int rowIndex, int tabCount) {
+        if (rowIndex != 0) {
+            printRow(triangle, rowIndex - 1, tabCount + 1);
         }
         printTab(tabCount);
-        printCell(triangle[rowCount], triangle[rowCount].length - 1);
+        printCell(triangle[rowIndex], triangle[rowIndex].length - 1);
     }
 
-    public static void createTriangle(int size) {
-        int[][] triangle = new int[size][];
+    /**
+     * Creates an array based up size, and populates using recursive methods with the values of a Pascal's Triangle. Then prints to console.
+     * @param rowCount The row count of our triangle.
+     */
+    public static void createTriangle(int rowCount) {
+        int[][] triangle = new int[rowCount][];
         processRow(triangle, null, triangle.length - 1);
         printRow(triangle, triangle.length - 1, 0);
 
     }
 
+    /**
+     * Our main method, prompts the user for input asking for the size our the desired Triangle.
+     * @param args Command Line args, unused.
+     */
     public static void main(String[] args) {
         Integer size = null;
         do {
