@@ -27,13 +27,16 @@ public class TowersOfHanoi {
         Collections.sort(towerA);
         Collections.sort(towerB);
         Collections.sort(towerC);
-        System.out.println();
-
-        //  user menu for game
-        for (int i = 0; diskAmount > i; i++) {
-            System.out.print(towerA.get(i));
-            System.out.print(towerB.get(i));
-            System.out.println(towerC.get(i));
-        } //  end of for loop
+        System.out.println(); 
+        menu(diskAmount, towerA, towerB, towerC);
     } //  end of main method
+
+    public static void menu(int diskAmount, ArrayList<Integer> towerA, ArrayList<Integer> towerB, ArrayList<Integer> towerC) {
+        for (int i = 0; diskAmount > i; i++) {
+            System.out.printf("%d%s", towerA.get(i), " ");
+            System.out.printf("%d%s", towerB.get(i), " ");
+            System.out.printf("%d%s%n", towerC.get(i), " ");
+        } //  end of for loop
+        System.out.println("A B C");
+    } //  end of menu method
 } //  end of TowersOfHanoi class
