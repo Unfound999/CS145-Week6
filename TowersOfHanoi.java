@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TowersOfHanoi {
@@ -14,14 +15,22 @@ public class TowersOfHanoi {
         ArrayList<Integer> towerA = new ArrayList<Integer>();
         ArrayList<Integer> towerB = new ArrayList<Integer>();
         ArrayList<Integer> towerC = new ArrayList<Integer>();
+        int diskAmount = 0;
         String source = "towerA";
         String dest = "towerC";
         String aux = "towerB";   
         Scanner input = new Scanner(System.in);
 
         //  prompts user for amount of disks
-        System.out.println("Please enter the amound of disks");
-        int diskAmount = input.nextInt();
+        do {
+            System.out.println("Please enter the total amount of disks: ");
+            try {
+                diskAmount = input.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("That is not a valid number, please enter a valid number: ");
+                input.next();
+            } // end of try catch
+        } while (diskAmount == 0);
 
         //  places disks in towerA
         for (int i = 0; diskAmount > i; i++) {
