@@ -63,7 +63,7 @@ public class TowersOfHanoi {
         } //  end of if loop
 
         hanoiSolve(diskAmount-1, towerA, towerB, towerC, source, aux, dest);
-        System.out.printf("%s%s%s%s%n", "Moved disk from ", source, " to ", dest);
+        System.out.printf("%s%d%s%s%s%s%n", "Moved disk ", diskAmount, " from ", source, " to ", dest);
         hanoiSolve(diskAmount-1, towerA, towerB, towerC, aux, dest, source);
 
     } // end of hanoiSolve method
