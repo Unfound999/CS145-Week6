@@ -4,12 +4,19 @@ import java.util.Scanner;
 
 public class TowersOfHanoi {
 
+    ArrayList<Integer> towerA = new ArrayList<Integer>();
+    ArrayList<Integer> towerB = new ArrayList<Integer>();
+    ArrayList<Integer> towerC = new ArrayList<Integer>();
+    
     public static void main(String[] args) throws NullPointerException{
 
         //  initializes variables
         ArrayList<Integer> towerA = new ArrayList<Integer>();
         ArrayList<Integer> towerB = new ArrayList<Integer>();
-        ArrayList<Integer> towerC = new ArrayList<Integer>();   
+        ArrayList<Integer> towerC = new ArrayList<Integer>();
+        String source = "towerA";
+        String dest = "towerC";
+        String aux = "towerB";   
         Scanner input = new Scanner(System.in);
 
         //  prompts user for amount of disks
@@ -28,7 +35,7 @@ public class TowersOfHanoi {
         Collections.sort(towerB);
         Collections.sort(towerC);
         System.out.println(); 
-        menu(diskAmount, towerA, towerB, towerC);
+        hanoiSolve(diskAmount, towerA, towerB, towerC, source, dest, aux);
     } //  end of main method
 
     public static void menu(int diskAmount, ArrayList<Integer> towerA, ArrayList<Integer> towerB, ArrayList<Integer> towerC) {
@@ -39,4 +46,16 @@ public class TowersOfHanoi {
         } //  end of for loop
         System.out.println("A B C");
     } //  end of menu method
+
+    public static void hanoiSolve(int diskAmount, ArrayList<Integer> towerA, ArrayList<Integer> towerB, ArrayList<Integer> towerC, String source, String dest, String aux) {
+
+        if (diskAmount == 0) {
+            return;
+        } //  end of if loop
+
+        hanoiSolve(diskAmount-1, towerA, towerB, towerC, source, aux, dest);
+        System.out.printf("%s%s%s%s%n", "Moved disk from ", source, " to ", dest);
+        hanoiSolve(diskAmount-1, towerA, towerB, towerC, aux, dest, source);
+
+    } // end of hanoiSolve method
 } //  end of TowersOfHanoi class
