@@ -53,6 +53,8 @@ public class TowersOfHanoi {
         int towerBHeight = towers.get("towerB");
         int towerCHeight = towers.get("towerC");
         
+        System.out.println();
+
         for (int i = 0; i < maxDisk; i++) {
             if (towerAHeight < maxDisk) {
                 System.out.printf("%d%s", 0, " ");
