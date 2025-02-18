@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -6,6 +7,7 @@ public class TowersOfHanoi {
     public static void main(String[] args) throws NullPointerException{
 
         //  initializes variables
+        HashMap<String, Integer> towers = new HashMap<String, Integer>();
         int diskAmount = 0;
         String source = "towerA";
         String dest = "towerC";
@@ -23,18 +25,24 @@ public class TowersOfHanoi {
             } // end of try catch
         } while (diskAmount == 0);
 
-        hanoiSolve(diskAmount, source, dest, aux);
+        towers.put("towerA", diskAmount);
+        towers.put("towerB", 0);
+        towers.put("towerC", 0);
+
+        hanoiSolve(diskAmount, source, dest, aux, towers);
     } //  end of main method
 
-    public static void hanoiSolve(int diskAmount, String source, String dest, String aux) {
+    public static void hanoiSolve(int diskAmount, String source, String dest, String aux, HashMap<String, Integer> towers) {
 
         if (diskAmount == 0) {
             return;
         } //  end of if loop
 
-        hanoiSolve(diskAmount-1, source, aux, dest);
+        hanoiSolve(diskAmount-1, source, aux, dest, towers);
+        towers.put(source, towers.get(source) - 1);
+        towers.put(dest, towers.get(dest) + 1);
         System.out.printf("%s%d%s%s%s%s%n", "Moved disk ", diskAmount, " from ", source, " to ", dest);
-        hanoiSolve(diskAmount-1, aux, dest, source);
+        hanoiSolve(diskAmount-1, aux, dest, source, towers);
 
     } // end of hanoiSolve method
 } //  end of TowersOfHanoi class
