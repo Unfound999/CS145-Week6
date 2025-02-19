@@ -51,13 +51,13 @@ public class TowersOfHanoi {
         int towerBHeight = towers.get("towerB");
         int towerCHeight = towers.get("towerC");
         System.out.println();
-        hanoiUITest(towers, maxDisk, maxDisk, towerAHeight, towerBHeight, towerCHeight);
+        hanoiUI(towers, maxDisk, maxDisk, towerAHeight, towerBHeight, towerCHeight);
         System.out.printf("%s%d%s%s%s%s%n", "Moved disk ", diskAmount, " from ", source, " to ", dest);
         hanoiSolve(diskAmount-1, aux, dest, source, towers, maxDisk);
 
     } // end of hanoiSolve method
 
-      public static void hanoiUITest(HashMap<String, Integer> towers, int maxDisk, int heightMax, int towerAH, int towerBH, int towerCH) {
+      public static void hanoiUI(HashMap<String, Integer> towers, int maxDisk, int heightMax, int towerAH, int towerBH, int towerCH) {
 
         if (maxDisk == 0) {
             System.out.println("A B C");
@@ -83,7 +83,7 @@ public class TowersOfHanoi {
             System.out.println( "\u25A0");
         }
 
-        hanoiUITest(towers, maxDisk-1, heightMax, towerAH, towerBH, towerCH);
+        hanoiUI(towers, maxDisk-1, heightMax, towerAH, towerBH, towerCH);
 
     } 
 
