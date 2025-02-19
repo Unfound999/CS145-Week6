@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class FindCD {
+public class FindLCD {
     public static void main(String[] args) throws Exception {
 
         Scanner input = new Scanner(System.in);
