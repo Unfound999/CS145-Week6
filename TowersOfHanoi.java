@@ -57,39 +57,10 @@ public class TowersOfHanoi {
 
     } // end of hanoiSolve method
 
-    public static void hanoiUI (HashMap<String, Integer> towers, int maxDisk) {
-        
-        int towerAHeight = towers.get("towerA");
-        int towerBHeight = towers.get("towerB");
-        int towerCHeight = towers.get("towerC");
-        
-        System.out.println();
-
-        for (int i = 0; i < maxDisk; i++) {
-            if (towerAHeight < maxDisk) {
-                System.out.printf("%d%s", 0, " ");
-                towerAHeight++;
-            } else {
-                System.out.printf("%d%s", 1, " ");
-            }
-            if (towerBHeight < maxDisk) {
-                System.out.printf("%d%s", 0, " ");
-                towerBHeight++;
-            } else {
-                System.out.printf("%d%s", 1, " ");
-            }
-            if (towerCHeight < maxDisk) {
-                System.out.println(0);
-                towerCHeight++;
-            } else {
-                System.out.println( 1);
-            }
-        }
-    }
-
       public static void hanoiUITest(HashMap<String, Integer> towers, int maxDisk, int heightMax, int towerAH, int towerBH, int towerCH) {
 
         if (maxDisk == 0) {
+            System.out.println("A B C");
             return;
         }
         
@@ -97,19 +68,19 @@ public class TowersOfHanoi {
             System.out.printf("%d%s", 0, " ");
             towerAH++;
         } else {
-            System.out.printf("%d%s", 1, " ");
+            System.out.printf("%s", "\u25A0 ");
         }
         if (towerBH < heightMax) {
-            System.out.printf("%d%s", 0, " ");
+            System.out.printf("%d%s",  0, " ");
             towerBH++;
         } else {
-            System.out.printf("%d%s", 1, " ");
+            System.out.printf("%s", "\u25A0 ");
         }
         if (towerCH < heightMax) {
             System.out.println(0);
             towerCH++;
         } else {
-            System.out.println( 1);
+            System.out.println( "\u25A0");
         }
 
         hanoiUITest(towers, maxDisk-1, heightMax, towerAH, towerBH, towerCH);
