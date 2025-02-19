@@ -3,6 +3,7 @@
 //  Assignment: CS145: Assignment 7 - Recursion
 //  Extra Credit: For extra credit, I utilized zero iterative loops, using only recursion for this program.
 //                A try-catch is utilized to handle Scanner input.
+//                A UI was created to visualize each step of the Towers of Hanoi
 //                A HashMap is utilized to store the towers and each tower's respective amount of disks.
 
 import java.util.HashMap;
